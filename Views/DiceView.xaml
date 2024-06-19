@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="avaliacao2703.Views.DiceView"
+             Title="RPGCompanion App">
+    <ScrollView>
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            Spacing="10"
+            MaximumWidthRequest="400">
+
+            <Label
+                Text="ROLADOR DE DADOS"
+                FontSize="40"
+                FontAttributes="Bold"
+                Padding="25,0"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                x:Name="dadoValue"
+                Text="{Binding Dadovalue}"
+                FontSize="Large"
+                Padding="25,0"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center" />
+
+            <Picker 
+                x:Name="pickerDado"
+                Title="Quantidade de lados: "
+                SelectedItem="{Binding Numerolados}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:Int32}">
+                        <x:Int32>3</x:Int32>
+                        <x:Int32>4</x:Int32>
+                        <x:Int32>6</x:Int32>
+                        <x:Int32>8</x:Int32>
+                        <x:Int32>10</x:Int32>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Slider x:Name="sliderDado"
+                        Minimum="0"
+                        Maximum="100"
+                        WidthRequest="200"/>
+                
+                <Label x:Name="valueTextBlock"
+                       FontSize="16"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,10,0,0"
+                       Text="{Binding Source={x:Reference sliderDado}, Path=Value, StringFormat='{}{0:F0}'}"
+                       Grid.Row="1" />
+            </Grid>
+
+            <Button 
+                x:Name="BNTRolar" 
+                Text="ROLAR O DADO" 
+                Command="{Binding Rolarcommand}"
+                Margin="0,25" 
+                BackgroundColor="#404040" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
